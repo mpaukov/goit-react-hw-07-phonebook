@@ -21,7 +21,7 @@ const ContactList = () => {
       )}
       {!isFetching && !isError && contacts && (
         <ul className={s.list}>
-          {[...contacts]
+          {contacts
             .sort((a, b) => a.name.localeCompare(b.name))
             .map(({ id, name, number }) => {
               return <ContactItem contact={{ id, name, number }} key={id} />;
