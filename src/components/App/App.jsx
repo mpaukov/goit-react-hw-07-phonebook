@@ -1,7 +1,5 @@
 import ContactForm from '../ContactForm';
-import Filter from '../Filter';
 import ContactList from '../ContactList';
-
 import { Container, MainTitle, Title } from './App.styled';
 
 function App() {
@@ -10,7 +8,6 @@ function App() {
       <MainTitle>Phone Book</MainTitle>
       <ContactForm />
       <Title>Contacts</Title>
-      <Filter title="Find contact by name" />
       <ContactList />
     </Container>
   );
