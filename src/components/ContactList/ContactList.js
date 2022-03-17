@@ -11,9 +11,7 @@ const WatchWrapper = styled.div`
 
 const ContactList = () => {
   const { data: contacts, isFetching, isError } = useFetchContactsQuery();
-  const filteredContacts = contacts
-    ? [...contacts].sort((a, b) => a.name.localeCompare(b.name))
-    : [];
+
   return (
     <>
       {isFetching && (
@@ -23,9 +21,11 @@ const ContactList = () => {
       )}
       {!isFetching && !isError && contacts && (
         <ul className={s.list}>
-          {filteredContacts.map(({ id, name, number }) => {
-            return <ContactItem contact={{ id, name, number }} key={id} />;
-          })}
+          {[...contacts]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(({ id, name, number }) => {
+              return <ContactItem contact={{ id, name, number }} key={id} />;
+            })}
         </ul>
       )}
       {isError && <h1>Data are not found</h1>}
