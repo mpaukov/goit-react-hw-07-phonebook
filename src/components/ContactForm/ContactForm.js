@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useCreateContactMutation } from 'components/API/api-service';
+import { useCreateContactMutation } from 'components/redux/api-service';
 import s from './ContactForm.module.css';
 
-function ContactForm() {
+function ContactForm({ contacts: { data: contacts } }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -27,9 +27,14 @@ function ContactForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    createContact({ name, number });
-    setName('');
-    setNumber('');
+    const contactExist = contacts.find(contact => contact.name === name);
+    if (!contactExist) {
+      createContact({ name, number });
+      setName('');
+      setNumber('');
+    } else {
+      alert(`${name} is already in contact`);
+    }
   };
 
   return (

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
-import { useDeleteContactMutation } from 'components/API/api-service';
+import { useDeleteContactMutation } from 'components/redux/api-service';
 
 const ContactItem = ({ contact }) => {
   const { id, name, number } = contact;
